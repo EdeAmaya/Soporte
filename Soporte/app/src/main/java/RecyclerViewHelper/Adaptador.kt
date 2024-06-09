@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import edenilson.amaya.soporte.R
+import edenilson.amaya.soporte.detalles_ticket
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -129,6 +130,22 @@ class Adaptador(var Datos: List<tbTickets>) : RecyclerView.Adapter<ViewHolder>()
             }
             val dialog = builder.create()
             dialog.show()
+        }
+
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+
+            val pantallaDetalles = Intent(context,detalles_ticket::class.java)
+            pantallaDetalles.putExtra("uuid",item.uuid)
+            pantallaDetalles.putExtra("titulo",item.titulo)
+            pantallaDetalles.putExtra("descripcion",item.descripcion)
+            pantallaDetalles.putExtra("autor",item.autor)
+            pantallaDetalles.putExtra("email",item.email)
+            pantallaDetalles.putExtra("fechaCreacion",item.fechaCreacion)
+            pantallaDetalles.putExtra("estado",item.estado)
+            pantallaDetalles.putExtra("fechaFinalizacion",item.fechaFinalizacion)
+
+            context.startActivity(pantallaDetalles)
         }
 
 
